@@ -1,5 +1,9 @@
 <template>
-    <div></div>
+    <div class="container">
+        <h4>在线浏览版留言板 7讲</h4>
+        <input type="text" v-model="msg.name" class="form-control" placeholder="姓名：">
+
+    </div>
 </template>
 
 <script lang="ts" >
@@ -22,7 +26,11 @@ export default defineComponent({
         const router = useRouter();
         //console.log('1-开始创建组件-setup')
         /** 数据部分   */
-        const data = reactive({})
+        const msg = reactive({
+            name:'',
+            email: '',
+            contient: '',
+        })
         onBeforeMount(() => {
             console.log('2.组件挂载页面之前执行----onBeforeMount')
         })
