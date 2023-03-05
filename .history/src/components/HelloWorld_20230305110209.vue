@@ -67,10 +67,10 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     msg: String,
   },
   emits: {
-    
-    // 'close-model':(paylod: any) => {
-    //   return paylod.type == 'close'
-    // }
+    // eslint-disable-next-line to ignore the next line.
+    'close-model':(paylod: any) => {
+      return paylod.type == 'close'
+    }
 
   },
   setup() {

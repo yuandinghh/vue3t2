@@ -67,10 +67,9 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     msg: String,
   },
   emits: {
-    
-    // 'close-model':(paylod: any) => {
-    //   return paylod.type == 'close'
-    // }
+    'close-model':(paylod: any) => {
+      return paylod.type == 'close'
+    }
 
   },
   setup() {

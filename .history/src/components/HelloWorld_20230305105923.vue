@@ -1,13 +1,15 @@
 <template>
   <div class="hello">
-    <template  to="#model">
-    <div id="center">
-      <h2><slot>this is model</slot></h2>
-    </div>
+    <template to="#model">
+      <div id="center">
+        <h2>
+          <slot>this is model</slot>
+        </h2>
+      </div>
     </template>
     <h2 v-if="loading">Loadin>>>>>.message v-if="loaded"</h2>
     <!-- <img v-if="loaded"  :src="result?.message">     <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
-   <!--   <img v-if="loaded" :src="result[0].url">  <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
+    <!--   <img v-if="loaded" :src="result[0].url">  <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
     <h2>X:{{ x }} Y:{{ y }}</h2> <!--  img:{{img }} -->
     <h2>overincrease+count:==>{{ count2 }}</h2>
     <h1>count:==>{{ count }} count1:==>{{ count1 }} </h1>
@@ -67,10 +69,9 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     msg: String,
   },
   emits: {
-    
-    // 'close-model':(paylod: any) => {
-    //   return paylod.type == 'close'
-    // }
+    'close-model': (paylod: any) => {
+      return paylod.type == 'close'
+    }
 
   },
   setup() {
@@ -180,6 +181,7 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   margin-left: -100px;
   margin-top: -100px;
 }
+
 .hello {
   padding: -10px;
   margin: -10px;
@@ -209,5 +211,4 @@ li {
 
 a {
   color: #42b983;
-}
-</style>
+}</style>
