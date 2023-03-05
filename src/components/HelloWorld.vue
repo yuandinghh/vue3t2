@@ -1,19 +1,26 @@
 <template>
   <div class="hello">
+    <template  to="#model">
+    <div id="center">
+      <h2><slot>this is model</slot></h2>
+    </div>
+    </template>
     <h2 v-if="loading">Loadin>>>>>.message v-if="loaded"</h2>
     <!-- <img v-if="loaded"  :src="result?.message">     <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
-    <img v-if="loaded" :src="result[0].url"> <!--   <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
+   <!--   <img v-if="loaded" :src="result[0].url">  <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
     <h2>X:{{ x }} Y:{{ y }}</h2> <!--  img:{{img }} -->
     <h2>overincrease+count:==>{{ count2 }}</h2>
-    <h1>count:==>{{ count }}  count1:==>{{ count1 }}  </h1>
+    <h1>count:==>{{ count }} count1:==>{{ count1 }} </h1>
     <h1>double:{{ double }}</h1>
     <h1>reactive:{{ data1.count }}</h1>
     <h1>reactive-double:{{ data1.double }}</h1>
     <button @click="increase">increase+1</button>
+    <div id="model"></div>
     <div>
       <p>upGreetings:{{ greetings }}</p>
       <button @click="increase1">increase:setup +1</button>
       <button @click="upGreetings">upGreetings</button>
+
       <button @click="overincrease">overincrease</button>
     </div>
     <button @click="data1.increase">data1+1</button>
@@ -21,13 +28,12 @@
       <li v-for="number in numbers" :key="number"> {{ numbers }}</li>
     </ul>
     <h2> {{ person.name }} </h2>
+    <button @click="model">model 打开关闭</button>
   </div>
 </template>
 
 <script lang="ts">
-//todo 
-//bug
-//tag
+
 import { defineComponent } from "vue";
 import { ref, computed, reactive, toRefs, watch } from "vue";  //torefs 响应式函数,onMounted,onUnmounted onMounted,onUpdated,onRenderTriggered,
 import useMousePosition from '../hooks/useMousePosition'  //获得外部函数
@@ -60,6 +66,12 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   props: {
     msg: String,
   },
+  emits: {
+    'close-model':(paylod:any) => {
+      return paylod.type == 'close'
+    }
+
+  }
   setup() {
     const { x, y } = useMousePosition()
     // onMounted(()=>{   //加载
@@ -87,10 +99,10 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     const upGreetings = () => {
       greetings.value += 'hello!'
     }
-     const yuandingadd = ref(0)
-    const upyuandingadd = () => {
-      yuandingadd.value =+ 5
-    }
+    const yuandingadd = ref(0)
+    // const upyuandingadd = () => {
+    //   yuandingadd.value =+ 5
+    // }
     // const x = ref(0);    const y = ref(0)  //已经转移到新的文件夹中
     // const upateMouse = (e:MouseEvent) => {  //监控屏幕坐标
     //   x.value = e.pageX
@@ -150,16 +162,33 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     };
   },
 
-
 });
 
 </script>
 ø
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#center {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #4c0ec9;
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+}
 .hello {
   padding: -10px;
   margin: -10px;
+}
+
+img {
+  /* width: 200px; */
+  height: 200px;
+  transform: scale(0.5);
+  margin: 0px;
 }
 
 h1 h2 h3 {

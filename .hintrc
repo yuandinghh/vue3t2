@@ -3,6 +3,13 @@
     "development"
   ],
   "hints": {
-    "highest-available-document-mode": "off"
+    "highest-available-document-mode": "off",
+    "axe/language": [
+      "default",
+      {
+        "html-has-lang": "off"
+      }
+    ],
+    "meta-viewport": "off"
   }
 }
