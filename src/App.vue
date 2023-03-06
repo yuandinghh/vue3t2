@@ -24,6 +24,7 @@ export default defineComponent({
     HelloWorld,
   },
 });
+
 </script>
 //todo 
 //bug
