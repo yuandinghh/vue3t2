@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <h4>在线浏览版留言板 7讲</h4>
-        <input type="text" v-model="msg.name" class="form-control" placeholder="姓名：">
-
+        <input type="text"  class="form-control" placeholder="姓名：">
+        <!-- <input type="text" v-model="msg.mail"> -->
     </div>
 </template>
 
@@ -13,21 +13,17 @@ import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
-    name: "HelloWorld",
-    props: {
-        msg: String,
-    },
+    name: "TelePort",
+    // props: {
+    //      msg: String,
+    // },
     setup() {
-        /** 仓库   */
-        const store = useStore();
-        /** 路由对象 */
-        const route = useRoute();
-        /** 路由实例   */
-        const router = useRouter();
+        const store = useStore();   /** 仓库   */
+        const route = useRoute();    /** 路由对象 */
+        const router = useRouter();   /** 路由实例   */
         //console.log('1-开始创建组件-setup')
-        /** 数据部分   */
-        const msg = reactive({
-            name:'',
+        const msg = reactive({   /** 数据部分   */
+            name: '',
             email: '',
             contient: '',
         })
@@ -38,15 +34,13 @@ export default defineComponent({
             console.log('3.-组件挂载到页面之后执行-------onMounted')
         })
         watchEffect(() => {
-            console.log(`当${name}的值变化的时候调用，初始化
-    的时候也调用一次
-     `)
+            console.log(`当${name}的值变化的时候调用，初始化的时候也调用一次`)
         })
 
         // 使用toRefs解构
         // let { } = { ...toRefs(data) } 
         return ({
-            ...toRefs(data)
+            ...toRefs(msg)
         })
     },
 })

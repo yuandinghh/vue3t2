@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <h3>{{ msg }}</h3>
     <template  to="#model">
     <div id="center">
       <h2><slot>this is model</slot></h2>
@@ -47,7 +48,7 @@ interface Dp {
   increase: () => void;
   increase1: () => void;
   overincrease: () => void;
-  numbers: number[];
+  numbers: number[],
   person: { name?: string }
 }
 // interface DogR{
@@ -66,13 +67,23 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   props: {
     msg: String,
   },
+  // emits: {      //   // 'close-model':(paylod: any) => {
+  //   //   return paylod.type == 'close'  //   // } },
   emits: {
-    
-    // 'close-model':(paylod: any) => {
-    //   return paylod.type == 'close'
-    // }
+    // 没有验证函数
+    click: null,
 
+    // 具有验证函数
+    submit: (payload:any) => {
+      if (payload.email && payload.password) {
+        return true
+      } else {
+        console.warn(`Invalid submit event payload!`)
+        return false
+      }
+    }
   },
+
   setup() {
     const { x, y } = useMousePosition()
     // onMounted(()=>{   //加载
