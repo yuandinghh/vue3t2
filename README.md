@@ -58,3 +58,8 @@ remote: Resolving deltas: 100% (177/177), done.
 To https://github.com/yuandinghh/vue3t2.git
  * [new branch]      main -> main
 branch 'main' set up to track 'origin/main'.
+--------------- 2023-3-6 -------------------
+Module not found: Error: Can’t resolve ‘less-loader’ in '文件位置’报错解决 
+原因：less 、 less-loader模块未安装，但在中进行使用 
+解决方法：npm install --save-dev less-loader less 
+直接安装可能会存在版本太高问题的报错，进行npm run dev时项目无法启动

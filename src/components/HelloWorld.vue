@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
     <h3>{{ msg }}</h3>
-    <template  to="#model">
+    <!-- <template  to="#model">
     <div id="center">
       <h2><slot>this is model</slot></h2>
     </div>
-    </template>
+    </template> -->
     <h2 v-if="loading">Loadin>>>>>.message v-if="loaded"</h2>
     <!-- <img v-if="loaded"  :src="result?.message">     <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
-   <!--   <img v-if="loaded" :src="result[0].url">  <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
+    <!--   <img v-if="loaded" :src="result[0].url">  <img v-if="loaded" :src="img"> 加了v-if="loaded"  反而无法显示 (子程序出错) -->
     <h2>X:{{ x }} Y:{{ y }}</h2> <!--  img:{{img }} -->
     <h2>overincrease+count:==>{{ count2 }}</h2>
     <h1>count:==>{{ count }} count1:==>{{ count1 }} </h1>
@@ -30,15 +30,16 @@
     </ul>
     <h2> {{ person.name }} </h2>
     <button @click="model">model 打开关闭</button>
+    <Modal msg="Welcome to Your Vue.js  Modal" />
   </div>
 </template>
 
 <script lang="ts">
-
 import { defineComponent } from "vue";
 import { ref, computed, reactive, toRefs, watch } from "vue";  //torefs 响应式函数,onMounted,onUnmounted onMounted,onUpdated,onRenderTriggered,
 import useMousePosition from '../hooks/useMousePosition'  //获得外部函数
 import useURLloader from '../hooks/useURLloader'
+import Modal from "./Modal.vue";
 
 interface Dp {
   count: number;
@@ -67,6 +68,11 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   props: {
     msg: String,
   },
+   components: {
+    // TelePort,
+    Modal
+    //  HelloWorld,
+  },
   // emits: {      //   // 'close-model':(paylod: any) => {
   //   //   return paylod.type == 'close'  //   // } },
   emits: {
@@ -74,7 +80,7 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
     click: null,
 
     // 具有验证函数
-    submit: (payload:any) => {
+    submit: (payload: any) => {
       if (payload.email && payload.password) {
         return true
       } else {
@@ -85,6 +91,7 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   },
 
   setup() {
+   
     const { x, y } = useMousePosition()
     // onMounted(()=>{   //加载
     //   console.log('onMounted')
@@ -161,13 +168,7 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
       // count1, count2,
       // increase1,      //double,
       // overincrease,
-      data1,
-      upGreetings,
-
-      greetings,
-      x, y,
-      result,
-      loaded, loading,
+      data1, upGreetings, greetings, x, y, result, loaded, loading,
       //  msg,
       ...refdata,    //全部响应式对象
       yuandingadd
@@ -191,6 +192,7 @@ export default defineComponent({   //defineComponent函数，只是对setup函�
   margin-left: -100px;
   margin-top: -100px;
 }
+
 .hello {
   padding: -10px;
   margin: -10px;
