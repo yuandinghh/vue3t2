@@ -23,7 +23,9 @@ export default defineComponent({
         const router = useRouter();
         //console.log('1-开始创建组件-setup')
         /** 数据部分   */
-        const data = reactive({})
+        const data = reactive({
+            msg: "Hello World",
+        })
         onBeforeMount(() => {
             console.log('2.组件挂载页面之前执行----onBeforeMount')
         })
@@ -35,7 +37,6 @@ export default defineComponent({
     的时候也调用一次
      `)
         })
-
         // 使用toRefs解构
         // let { } = { ...toRefs(data) } 
         return ({
