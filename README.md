@@ -65,3 +65,22 @@ Module not found: Error: Can’t resolve ‘less-loader’ in '文件位置’�
 直接安装可能会存在版本太高问题的报错，进行npm run dev时项目无法启动
 
 3-8 纸叠  ctrl+1  折叠所选内容
+3-9
+Suspense等待异步组件时渲染一些额外内容，让应用有更好的用户体验,
+async   
+ <Suspense>
+      <template #default>
+        <div>
+          <p>把2个组件都放到一个div里面才会显示</p>
+        <AsyncShow msg="Welcome to Suspense异步请求" />
+        <!-- <AsyncShow/>  <async-show/> 两个组件结果相同-->
+        <!-- <dog-show /> -->
+        <DogShow msg="Welcome to DogShow" />
+         <!-- <DogShow /> -->
+          </div>
+      </template>
+      <template #fallback>
+        <h1 style="color:blueviolet">loading........</h1>
+      </template>
+    </Suspense>
+  

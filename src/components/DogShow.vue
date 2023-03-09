@@ -1,32 +1,28 @@
-
 <template>
-    <div>
-        
-    </div>
+        <img :src="result && result.message">
 </template>
 
-
 <script lang="ts" >
-
 import { defineComponent } from "vue";
 // import { ref, reactive, toRefs, onBeforeMount, onMounted, watchEffect, computed } from 'vue';
 // import { useStore } from 'vuex';
 // import { useRoute, useRouter } from 'vue-router';
-// import { axios } from 'axios';
+import  axios from 'axios';
+
 export default defineComponent({
-    name: "",
+    name: "DogShow",
     props: {
         msg: String,
     },
-    setup() {
-
-        return ({
-
-        })
-    },
+    async setup() {
+         console.log("+++++++DogShow----------");
+        const rawData = await axios.get('https://dog.ceo/api/breeds/image/random')
+        return {
+            result: rawData.data
+        }
+    }
 })
 </script>
 
 <style scoped lang='less'>
-
 </style>

@@ -1,24 +1,30 @@
-
 <template>
     <div>
-        <h2>{{ result }}</h2>
+        <h1>{{ msg }}  result:{{ result }}</h1>
     </div>
 </template>
 
-
 <script lang="ts" >
 
-import { defineComponent } from "vue";
+import { defineComponent, defineExpose, } from "vue";
+import { request } from "../hooks/server";
 // import { ref, reactive, toRefs, onBeforeMount, onMounted, watchEffect, computed } from 'vue';
 // import { useStore } from 'vuex';
 // import { useRoute, useRouter } from 'vue-router';
+const number =  request();
+console.log("AsyncShow number:"+number);	// 123
 
-export default defineComponent({
-    //  name: "yyy",
+defineExpose({
+    number,
+});
+export default defineComponent({    //
+    name: "AsyncShow",
     props: {
         msg: String,
     },
+
     setup() {
+        console.log("--------AsyncShow----------");
         return new Promise((resolve) => {
             setTimeout(() => {
                 return resolve({
@@ -26,7 +32,11 @@ export default defineComponent({
                 })
             }, 3000)
         })
+        
     },
+   
+
+  
 })
 </script>
 

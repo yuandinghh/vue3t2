@@ -32,7 +32,8 @@
     <h2>{{ person.name }}</h2>
     <!-- <button @click="model">model 打开关闭</button> -->
     <Modal msg="Welcome to Your Vue.js  Modal" /> 如果不用teleport
-      <h3>{{ resultp }}</h3>
+    <!-- <AsyncShow msg="Welcome to Your AsyncShow"> </AsyncShow> -->
+  
   </div>
 </template>
 
@@ -42,6 +43,7 @@ import { ref, computed, reactive, toRefs, watch } from "vue"; //torefs 响应式
 import useMousePosition from "../hooks/useMousePosition"; //获得外部函数
 import useURLloader from "../hooks/useURLloader";
 import Modal from "./Modal.vue";
+
 
 interface Dp {
   count: number;
@@ -72,36 +74,27 @@ export default defineComponent({
     msg: String,
   },
   components: {
-    // TelePort,
+   
     Modal,
   },
   // emits: {      //   // 'close-model':(paylod: any) => {
   //   //   return paylod.type == 'close'  //   // } },
-  emits: {
-    // 没有验证函数
-    click: null,
+  // emits: {
+  //   // 没有验证函数
+  //   click: null,
 
-    // 具有验证函数
-    submit: (payload: any) => {
-      if (payload.email && payload.password) {
-        return true;
-      } else {
-        console.warn(`Invalid submit event payload!`);
-        return false;
-      }
-    },
-  },
+  //   // 具有验证函数
+  //   submit: (payload: any) => {
+  //     if (payload.email && payload.password) {
+  //       return true;
+  //     } else {
+  //       console.warn(`Invalid submit event payload!`);
+  //       return false;
+  //     }
+  //   },
+  // },
 
   setup() {
-    resultp = ref();
-   const resultp = () => new Promise((resolve) => {
-      setTimeout(() => {
-        return resolve({
-          resultp: 42
-        })
-      }, 3000)
-    })
-
     const { x, y } = useMousePosition();
     // onMounted(()=>{   //加载
     //   console.log('onMounted')
@@ -121,8 +114,13 @@ export default defineComponent({
         console.log("result.value", result.value[0].url);
       }
     }),
-      console.log("result: " + result.value + "  loading:" + loading.value +
-        "  loaded:" + loaded
+      console.log(
+        "result: " +
+          result.value +
+          "  loading:" +
+          loading.value +
+          "  loaded:" +
+          loaded
       );
     // console.log("img::::: " + img.value);   console.log("img " + img);
     console.log("result.value: " + result.value);
@@ -186,8 +184,9 @@ export default defineComponent({
     //refdata.double
     return {
       // count1, count2, increase1,      //double, overincrease, msg,
-   //   resultp,
+      //   resultp,
       data1,
+      // AsyncShow,
       upGreetings,
       greetings,
       x,
@@ -197,9 +196,7 @@ export default defineComponent({
       loading,
       ...refdata, //全部响应式对象
       yuandingadd,
-      
     };
-
   },
 });
 </script>
