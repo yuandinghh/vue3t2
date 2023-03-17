@@ -1,4 +1,5 @@
 <template>
+      <h1>{{ msg }} </h1>
         <img :src="result && result.message">
 </template>
 
@@ -15,7 +16,7 @@ export default defineComponent({
         msg: String,
     },
     async setup() {
-         console.log("+++++++DogShow----------");
+         console.log("++++async+++DogShow----------");
         const rawData = await axios.get('https://dog.ceo/api/breeds/image/random')
         return {
             result: rawData.data

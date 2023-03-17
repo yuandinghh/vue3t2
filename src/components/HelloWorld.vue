@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    <h3>{{ msg }}</h3>
-    <!-- <template  to="#model">
+    <h3>{{ msg }}</h3>    <!-- <template  to="#model">
     <div id="center">
       <h2><slot>this is model</slot></h2>
     </div>
@@ -22,28 +21,23 @@
       <p>upGreetings:{{ greetings }}</p>
       <button @click="increase1">increase:setup +1</button>
       <button @click="upGreetings">upGreetings</button>
-
       <button @click="overincrease">overincrease</button>
     </div>
-    <button @click="data1.increase">data1+1</button>
+    <button @click="data1.increase">$event=>data1+1</button>
     <ul>
       <li v-for="number in numbers" :key="number">{{ numbers }}</li>
     </ul>
-    <h2>{{ person.name }}</h2>
-    <!-- <button @click="model">model 打开关闭</button> -->
+    <h2>{{ person.name }}</h2>    <!-- <button @click="model">model 打开关闭</button> -->
     <Modal msg="Welcome to Your Vue.js  Modal" /> 如果不用teleport
     <!-- <AsyncShow msg="Welcome to Your AsyncShow"> </AsyncShow> -->
-  
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { ref, computed, reactive, toRefs, watch } from "vue"; //torefs 响应式函数,onMounted,onUnmounted onMounted,onUpdated,onRenderTriggered,
+import {defineComponent, ref, computed, reactive, toRefs, watch } from "vue"; //torefs 响应式函数,onMounted,onUnmounted onMounted,onUpdated,onRenderTriggered,
 import useMousePosition from "../hooks/useMousePosition"; //获得外部函数
 import useURLloader from "../hooks/useURLloader";
 import Modal from "./Modal.vue";
-
 
 interface Dp {
   count: number;
@@ -172,7 +166,7 @@ export default defineComponent({
         data1.count1++;
       },
       overincrease: () => {
-        data1.count2++;
+        data1.count2=data1.count2+6;
       },
       double: computed(() => data1.count * 3),
       numbers: [0, 3, 4, 5],
@@ -180,7 +174,7 @@ export default defineComponent({
     });
     data1.numbers[0] = 5;
     data1.person.name = "yuanding";
-    const refdata = toRefs(data1); //
+    const refdata = toRefs(data1); //释放属性数据
     //refdata.double
     return {
       // count1, count2, increase1,      //double, overincrease, msg,

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+   <p>{{ err }}</p>   <!-- 显示异步错误 -->
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
     <!-- <TelePort msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <!-- <Modal msg="Welcome to Your Vue.js  Modal" /> -->
@@ -15,8 +16,8 @@
           <p>把2个组件都放到一个div里面才会显示</p>
         <AsyncShow msg="Welcome to Suspense异步请求" />
         <!-- <AsyncShow/>  <async-show/> 两个组件结果相同-->
-        <!-- <dog-show /> -->
-        <DogShow msg="Welcome to DogShow" />
+        <dog-show  msg="Welcome to DogShow"/>  
+        <!-- <DogShow msg="Welcome to DogShow" /> -->
          <!-- <DogShow /> -->
           </div>
       </template>
@@ -29,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent,onErrorCaptured, ref } from "vue";
 // import { defineAsyncComponent } from 'vue'
 
 import HelloWorld from "./components/HelloWorld.vue";
@@ -49,6 +50,17 @@ export default defineComponent({
     AsyncShow,
     HelloWorld,
   },
+  setup() { 
+    const err = ref(null)
+   onErrorCaptured((e:any) => {         //  捕获异步错误
+      err.value = e
+      console.log(err);
+      return true;
+    });
+    return {
+      err,
+    };  
+  }
 });
 
 </script>
