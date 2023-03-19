@@ -29,6 +29,11 @@
         </div>
       </div>
     </div>
+    <div class="d-flex p-3 bg-secondary text-white">
+  <div class="p-2 bg-info">Flex item 1</div>
+  <div class="p-2 bg-warning">Flex item 2</div>
+  <div class="p-2 bg-primary">Flex item 3</div>
+</div>
   </div>
 </template>
 
@@ -36,7 +41,18 @@
 export default {
 
 }
-//数字去重的方法
+// // 数字去重的方法
+// Array.prototype.unique = function () {
+//   var res = [];
+//   var json = {};
+//   for (let i = 0; i < this.length; i++) {
+//     if (!json[this[i]]) {
+//       res.push(this[i]);
+//       json[this[i]] = 1;
+//     }
+//   }
+//   return res;
+// }
 
 </script>
 <style>

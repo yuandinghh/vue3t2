@@ -14,6 +14,7 @@
         </ul>
       </small>
     </footer>
+
   </div>
 </template>
 
@@ -32,6 +33,22 @@ export default defineComponent({
     GlobalHeader,
     Loader
   },
+  //写一个函数数组去重
+  function unique(arr) {
+    return Array.from(new Set(arr))
+  }
+  console.log(unique([1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 8, 9, 9, 10]))
+  function unique(arr) {
+    let res = []
+    for (let i = 0; i < arr.length; i++) { //遍历数组
+      if (res.indexOf(arr[i]) === -1) { //如果res中没有arr[i]，则将arr[i]添加到res中
+        res.push(arr[i])
+      }
+    }
+    return res
+
+  // }
+
   setup() {
     const store = useStore<GlobalDataProps>()
     const currentUser = computed(() => store.state.user)
