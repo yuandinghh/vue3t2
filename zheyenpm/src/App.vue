@@ -10,7 +10,7 @@
       <p>请调整这张响应式页面的大小以查看效果！</p>
     </div>
 
-    <div class="container  mt-5">
+    <div class="container mt-5">
       <div class="row">
         <div class="col-sm-4">
           <h3>列 1</h3>
@@ -30,17 +30,14 @@
       </div>
     </div>
     <div class="d-flex p-3 bg-secondary text-white">
-  <div class="p-2 bg-info">Flex item 1</div>
-  <div class="p-2 bg-warning">Flex item 2</div>
-  <div class="p-2 bg-primary">Flex item 3</div>
-</div>
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
-
-}
 // // 数字去重的方法
 // Array.prototype.unique = function () {
 //   var res = [];
@@ -53,7 +50,6 @@ export default {
 //   }
 //   return res;
 // }
-
 </script>
 <style>
 #app {
