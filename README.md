@@ -66,8 +66,9 @@ Module not found: Error: Can’t resolve ‘less-loader’ in '文件位置’�
 
 3-8 纸叠  ctrl+1  折叠所选内容
 3-9
-Suspense等待异步组件时渲染一些额外内容，让应用有更好的用户体验,
+# Suspense等待异步组件时渲染一些额外内容，让应用有更好的用户体验,
 async   
+...
  <Suspense>
       <template #default>
         <div>
@@ -83,4 +84,6 @@ async
         <h1 style="color:blueviolet">loading........</h1>
       </template>
     </Suspense>
+...
+23-3-22
   
